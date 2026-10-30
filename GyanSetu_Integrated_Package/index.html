@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TribalScholar AI | Scholarship Portal</title>
+
+<style>
+:root {
+  --green:#176443;
+  --green2:#208257;
+  --light:#eaf5ee;
+  --bg:#f5f8f5;
+  --text:#182a22;
+  --muted:#6b7b72;
+  --border:#dfe9e2;
+  --white:#fff;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+.hidden { display:none!important; }
+
+.btn {
+  border:0;
+  padding:11px 16px;
+  border-radius:9px;
+  font-weight:bold;
+}
+.primary { background:var(--green);color:white; }
+.secondary { background:white;color:var(--green);border:1px solid var(--border); }
+.danger { background:#fff0f0;color:#a33; }
+.field { margin:13px 0; }
+.field label {
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+.field input,.field select {
+  width:100%;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:white;
+}
+.field input:focus,.field select:focus {
+  outline:2px solid #b5ddc2;
+}
+.muted { color:var(--muted);font-size:13px;line-height:1.6; }
+.tag {
+  display:inline-block;
+  background:var(--light);
+  color:var(--green);
+  border-radius:20px;
+  padding:6px 10px;
+  font-size:11px;
+  font-weight:bold;
+}
+.card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:16px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:15px;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+  margin:20px 0;
+}
+.stat {
+  background:white;
+  border:1px solid var(--border);
+  padding:18px;
+  border-radius:12px;
+}
+.stat strong { display:block;font-size:27px;margin-top:8px; }
+.layout {
+  display:grid;
+  grid-template-columns:245px 1fr;
+  min-height:100vh;
+}
+.sidebar {
+  background:#123e2b;
+  color:white;
+  padding:25px 17px;
+}
+.brand {
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:35px;
+}
+.brand span { color:#9ce0b2; }
+.nav button {
+  width:100%;
+  text-align:left;
+  padding:13px;
+  border:0;
+  border-radius:8px;
+  color:#eaf5ed;
+  background:transparent;
+  margin:4px 0;
+}
+.nav button:hover,.nav button.active {
+  background:#ffffff20;
+}
+.logout {
+  margin-top:35px;
+  width:100%;
+  padding:12px;
+  border:0;
+  color:white;
+  background:#ffffff15;
+  border-radius:8px;
+}
+.main { min-width:0; }
+.topbar {
+  background:white;
+  border-bottom:1px solid var(--border);
+  padding:22px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.content {
+  padding:28px;
+  max-width:1450px;
+  margin:auto;
+}
+h1 { margin-top:0;font-size:27px; }
+h2 { font-size:18px; }
+.scheme-card {
+  background:white;
+  border:1px solid var(--border);
+  padding:19px;
+  border-radius:13px;
+}
+.scheme-card h3 { margin-top:0;font-size:16px; }
+.scheme-card p { font-size:13px;line-height:1.6;color:var(--muted); }
+.scheme-card .btn { margin-top:12px; }
+.table-wrap { overflow-x:auto; }
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+  font-size:13px;
+}
+th,td {
+  text-align:left;
+  padding:13px;
+  border-bottom:1px solid var(--border);
+}
+th { color:var(--muted); }
+.message { color:#a33;font-size:13px;min-height:18px; }
+.success { color:var(--green); }
+.empty {
+  padding:35px;
+  text-align:center;
+  color:var(--muted);
+}
+.login-shell {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:white;
+}
+.hero {
+  background:linear-gradient(145deg,#123e2b,#278057);
+  color:white;
+  padding:8%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero h1 { font-size:clamp(35px,5vw,55px); }
+.hero p { line-height:1.8;color:#d5e8db; }
+.login-side {
+  display:grid;
+  place-items:center;
+  padding:25px;
+}
+.login-card {
+  width:min(100%,470px);
+  padding:30px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 15px 45px #183d2810;
+}
+.login-card h2 { margin-top:0; }
+.link {
+  border:0;
+  background:none;
+  color:var(--green);
+  font-weight:bold;
+  padding:8px 0;
+}
+.notice {
+  padding:13px;
+  background:#f5f8f4;
+  border:1px solid var(--border);
+  border-radius:9px;
+  font-size:12px;
+  line-height:1.6;
+  margin-top:15px;
+}
+
+.result-panel {
+  margin-top:18px;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#f8fbf8;
+}
+.result-panel h3 { margin-top:0; }
+.result-panel h4 { margin:18px 0 8px; }
+.check-row {
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+}
+.check-row p { margin:6px 0 0; }
+.modal-overlay {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#10251dcc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  overflow-y:auto;
+}
+.modal-card {
+  width:min(100%,680px);
+  max-height:95vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 20px 70px #0003;
+}
+.document-options {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.document-option {
+  display:flex!important;
+  align-items:flex-start;
+  gap:8px;
+  padding:9px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-weight:normal!important;
+}
+.document-option input { width:auto; margin-top:2px; }
+.modal-actions {
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:16px;
+}
+
+@media(max-width:800px) {
+  .login-shell { grid-template-columns:1fr; }
+  .hero { min-height:260px; }
+  .layout { grid-template-columns:1fr; }
+  .sidebar { min-height:auto; }
+  .nav { display:grid;grid-template-columns:repeat(2,1fr); }
+  .logout { margin-top:10px; }
+  .grid { grid-template-columns:1fr; }
+  .stats { grid-template-columns:1fr; }
+  .content { padding:17px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script>
+// ======================================
+// TRIBALSCHOLAR AI - FRONTEND PROTOTYPE
+// ======================================
+
+const app = document.getElementById("app");
+
+let currentUser = null;
+let currentPage = "overview";
+const API_BASE = "http://127.0.0.1:8000";
+
+let backendSchemes = [];
+let schemes = [];
+
+async function loadBackendSchemes() {
+  const response = await fetch(`${API_BASE}/scholarships`);
+  if (!response.ok) {
+    throw new Error(`Scholarship API error: ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  backendSchemes = (data.scholarships || []).map(s => ({
+    id: s.scheme_id,
+    title: s.scheme_name,
+    category: s.study_level || "ST Scholarship",
+    education: [],
+    income: s.annual_family_income_limit_inr,
+    incomeStatus: s.income_limit_status || "",
+    description: (s.key_conditions || []).join(" • "),
+    documents: s.documents_to_check || [],
+    portal: s.application_portal || "",
+    rulesStatus: s.rules_status || "",
+    icon: "🎓"
+  }));
+
+  schemes = backendSchemes;
+  return schemes;
+}
+
+let applications = JSON.parse(
+  localStorage.getItem("tribalApplications") || "[]"
+);
+
+let students = JSON.parse(
+  localStorage.getItem("tribalStudents") || "[]"
+);
+
+function saveData() {
+  localStorage.setItem("tribalApplications",JSON.stringify(applications));
+  localStorage.setItem("tribalStudents",JSON.stringify(students));
+}
+
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+function money(value) {
+  return "₹"+Number(value).toLocaleString("en-IN");
+}
+
+// ======================================
+// LOGIN AND REGISTRATION
+// ======================================
+
+function renderLogin() {
+  currentUser = null;
+
+  app.innerHTML = `
+  <div class="login-shell">
+    <section class="hero">
+      <div class="brand">🌿 TribalScholar <span>AI</span></div>
+      <h1>Scholarships.<br>Opportunities.<br>Better Futures.</h1>
+      <p>
+        A unified scholarship and fellowship management
+        platform designed to support students through
+        registration, eligibility checking and application tracking.
+      </p>
+      <p>✔ Student registration<br>
+         ✔ Eligibility assistance<br>
+         ✔ Application tracking<br>
+         ✔ Administrative verification<br>
+         ✔ OCR-assisted document review</p>
+    </section>
+
+    <section class="login-side">
+      <div class="login-card">
+        <h2 id="formTitle">Student Registration</h2>
+        <p class="muted" id="formSubtitle">
+          Create your account and complete your student profile.
+        </p>
+
+        <form id="registerForm">
+          <div class="field">
+            <label>Full Name</label>
+            <input id="name" required placeholder="Enter full name">
+          </div>
+
+          <div class="field">
+            <label>Email Address</label>
+            <input id="email" type="email" required placeholder="Enter email">
+          </div>
+
+          <div class="field">
+            <label>Password</label>
+            <input id="password" type="password" minlength="6" required placeholder="Minimum 6 characters">
+          </div>
+
+          <div class="field">
+            <label>Account Type</label>
+            <select id="role" onchange="toggleStudentFields()">
+              <option value="student">Student</option>
+              <option value="admin">Administrator</option>
+            </select>
+          </div>
+
+          <div id="studentFields">
+            <div class="field">
+              <label>Category</label>
+              <select id="category">
+                <option value="ST">Scheduled Tribe (ST)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Annual Family Income (₹)</label>
+              <input id="income" type="number" min="0" required placeholder="Example: 200000">
+            </div>
+
+            <div class="field">
+              <label>Education Level</label>
+              <select id="education">
+                <option value="School">School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Postgraduate">Postgraduate</option>
+                <option value="Research">Research</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Course / Class</label>
+              <input id="course" required placeholder="Example: B.Tech CSE">
+            </div>
+
+            <div class="field">
+              <label>State</label>
+              <input id="state" required placeholder="Enter your state">
+            </div>
+
+            <div class="field">
+              <label>Have you received admission for overseas study?</label>
+              <select id="admission">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <p id="formMessage" class="message"></p>
+          <button class="btn primary" type="submit" style="width:100%">
+            Create Account / Login
+          </button>
+        </form>
+
+        <button class="link" onclick="forgotPassword()">
+          Forgot Password?
+        </button>
+
+        <div class="notice">
+          <b>Prototype notice:</b> This is a demonstration frontend.
+          It does not provide secure authentication or government verification.
+        </div>
+      </div>
+    </section>
+  </div>`;
+
+  document.getElementById("registerForm").addEventListener("submit",handleLogin);
+  toggleStudentFields();
+}
+
+function toggleStudentFields() {
+  const role = document.getElementById("role").value;
+  document.getElementById("studentFields").classList.toggle(
+    "hidden",role==="admin"
+  );
+}
+
+async function handleLogin(event) {
+  event.preventDefault();
+
+  const role = document.getElementById("role").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value;
+
+  if(role !== "admin") {
+    const incomeValue = document.getElementById("income").value;
+    const course = document.getElementById("course").value.trim();
+    const state = document.getElementById("state").value.trim();
+
+    if(!name || !email || !password || !course || !state ||
+       incomeValue === "" || !Number.isFinite(Number(incomeValue)) ||
+       Number(incomeValue) < 0) {
+      document.getElementById("formMessage").textContent =
+        "Please complete all required fields correctly.";
+      return;
+    }
+  }
+
+  const message = document.getElementById("formMessage");
+  message.textContent = "Connecting to GyanSetu backend...";
+
+  try {
+    await loadBackendSchemes();
+  } catch(error) {
+    message.textContent =
+      "Backend connect nahi hua. Check karein ki FastAPI server port 8000 par running hai.";
+    console.error(error);
+    return;
+  }
+
+  if(role === "admin") {
+    currentUser = {
+      name: name || "Administrator",
+      email,
+      role: "admin"
+    };
+    renderAdmin();
+    return;
+  }
+
+  const student = {
+    name,
+    email,
+    password,
+    role: "student",
+    category: document.getElementById("category").value,
+    income: Number(document.getElementById("income").value),
+    education: document.getElementById("education").value,
+    course: document.getElementById("course").value.trim(),
+    state: document.getElementById("state").value.trim(),
+    admission: document.getElementById("admission").value
+  };
+
+  const existing = students.find(s => s.email === email);
+
+  if(existing) {
+    if(existing.password !== password) {
+      message.textContent =
+        "Account already exists. Please check your password.";
+      return;
+    }
+    currentUser = existing;
+  } else {
+    students.push(student);
+    saveData();
+    currentUser = student;
+  }
+
+  currentPage = "overview";
+  renderStudent();
+}
+
+function forgotPassword() {
+  const email = prompt("Enter your registered email address:");
+  if(!email) return;
+
+  alert(
+    "For this frontend demo, password recovery is not connected to email. " +
+    "A secure backend password-reset service is required."
+  );
+}
+
+// ======================================
+// BACKEND-DRIVEN SCHEME CATALOGUE
+// Final eligibility checks are performed by FastAPI.
+// ======================================
+
+function getEligibleSchemes() {
+  // This is the catalogue count, not a final eligibility decision.
+  return schemes;
+}
+
+function statusColor(status) {
+  const value = String(status || "").toUpperCase();
+  if(["PASS", "SUCCESS", "APPROVED"].includes(value)) return "success";
+  if(["MISSING", "REVIEW", "MANUAL_REVIEW", "REJECTED"].includes(value)) return "message";
+  return "muted";
+}
+
+// ======================================
+// STUDENT PORTAL
+// ======================================
+
+function renderStudent() {
+  currentPage = currentPage || "overview";
+
+  const pages = {
+    overview:"Dashboard",
+    scholarships:"Eligible Scholarships",
+    applications:"My Applications",
+    profile:"My Profile"
+  };
+
+  const mine = applications.filter(
+    a=>a.email===currentUser.email
+  );
+
+  app.innerHTML = `
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">🌿 TribalScholar <span>AI</span></div>
+      <div class="muted" style="color:#c5decd;margin-bottom:15px">
+        STUDENT PORTAL
+      </div>
+      <nav class="nav">
+        <button class="${currentPage==="overview"?"active":""}" onclick="studentPage('overview')">▦ Dashboard</button>
+        <button class="${currentPage==="scholarships"?"active":""}" onclick="studentPage('scholarships')">🎓 Eligible Scholarships</button>
+        <button class="${currentPage==="applications"?"active":""}" onclick="studentPage('applications')">📄 My Applications</button>
+        <button class="${currentPage==="profile"?"active":""}" onclick="studentPage('profile')">👤 My Profile</button>
+      </nav>
+      <button class="logout" onclick="logout()">↪ Logout</button>
+    </aside>
+
+    <section class="main">
+      <header class="topbar">
+        <div>
+          <b>Student Portal / ${pages[currentPage]}</b>
+          <div class="muted">Scholarship and fellowship management</div>
+        </div>
+        <div><b>${safe(currentUser.name)}</b></div>
+      </header>
+      <main class="content" id="studentContent"></main>
+    </section>
+  </div>`;
+
+  if(currentPage==="overview") studentOverview();
+  if(currentPage==="scholarships") studentScholarships();
+  if(currentPage==="applications") studentApplications();
+  if(currentPage==="profile") studentProfile();
+}
+
+function studentPage(page) {
+  currentPage = page;
+  renderStudent();
+}
+
+function studentOverview() {
+  const eligible = getEligibleSchemes();
+  const mine = applications.filter(a=>a.email===currentUser.email);
+
+  document.getElementById("studentContent").innerHTML = `
+    <h1>Welcome, ${safe(currentUser.name)} 👋</h1>
+    <p class="muted">Here is your scholarship application overview.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="muted">Schemes in catalogue</span>
+        <strong>${eligible.length}</strong>
+      </div>
+      <div class="stat">
+        <span class="muted">Applications submitted</span>
+        <strong>${mine.length}</strong>
+      </div>
+      <div class="stat">
+        <span class="muted">Approved applications</span>
+        <strong>${mine.filter(a=>a.status==="Approved").length}</strong>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Eligibility Assessment</h2>
+      <p class="muted">
+        The scheme catalogue is loaded from the Python backend.
+        Use the eligibility checker to review your details and documents.
+      </p>
+      <button class="btn primary" onclick="studentPage('scholarships')">
+        View Scholarship Catalogue →
+      </button>
+    </section>
+
+    <section class="card">
+      <h2>Application Process</h2>
+      <p>1. Complete your student profile.</p>
+      <p>2. Check scholarship eligibility.</p>
+      <p>3. Apply for an eligible scheme.</p>
+      <p>4. Track your application status.</p>
+    </section>
+  `;
+}
+
+function studentScholarships() {
+  const content = document.getElementById("studentContent");
+
+  content.innerHTML = `
+    <h1>ST Scholarship & Fellowship Catalogue</h1>
+    <p class="muted">
+      These five scheme records are loaded directly from the GyanSetu Python backend.
+      Select a scheme to submit your income details and document checklist for a preliminary review.
+    </p>
+
+    <div class="tag">${schemes.length} backend schemes loaded</div>
+
+    <div class="grid" style="margin-top:20px">
+      ${schemes.length ? schemes.map(s => `
+        <article class="scheme-card">
+          <div style="font-size:28px">${s.icon}</div>
+          <h3>${safe(s.title)}</h3>
+          <span class="tag">${safe(s.category)}</span>
+          <p>${safe(s.description)}</p>
+          <p><b>Configured annual income limit:</b>
+            ${s.income === null || s.income === undefined ? "Not configured" : money(s.income)}
+          </p>
+          <p class="muted">${safe(s.incomeStatus)}</p>
+          <button class="btn primary" onclick="applyScheme('${safe(s.id)}')">
+            Check Eligibility & Documents
+          </button>
+          ${s.portal ? `<p><a href="${safe(s.portal)}" target="_blank" rel="noopener">Official application portal ↗</a></p>` : ""}
+        </article>
+      `).join("") : `
+        <div class="card empty">
+          No schemes received from backend. Please check the FastAPI server.
+        </div>
+      `}
+    </div>
+
+    <div class="notice">
+      This tool provides preliminary document and income checks only. Scheme limits and rules
+      must be verified against the current official notification. Final decisions require
+      authorized human review.
+    </div>
+  `;
+}
+
+function applyScheme(id) {
+  const scheme = schemes.find(s => s.id === id);
+  if(!scheme) {
+    alert("Scheme not found. Please reload the catalogue.");
+    return;
+  }
+
+  const already = applications.find(a =>
+    a.email === currentUser.email && a.schemeId === id
+  );
+
+  const modal = document.createElement("div");
+  modal.id = "eligibilityModal";
+  modal.className = "modal-overlay";
+
+  modal.innerHTML = `
+    <div class="modal-card">
+      <h2>${safe(scheme.title)}</h2>
+      <p class="muted">Select the documents available with you. Upload an income certificate image for OCR review.</p>
+
+      <div class="field">
+        <label>Annual Family Income (₹) ${scheme.income === null || scheme.income === undefined ? "(if applicable)" : "*"}</label>
+        <input id="apiAnnualIncome" type="number" min="0" value="${scheme.income === null || scheme.income === undefined ? "" : (Number(currentUser.income) || 0)}" placeholder="Annual income in INR">
+        <p class="muted">Configured scheme limit: ${scheme.income === null || scheme.income === undefined ? "No income test configured" : money(scheme.income)}</p>
+      </div>
+
+      <div class="field">
+        <label>Documents available</label>
+        <div class="document-options">
+          ${(scheme.documents || []).map((doc, index) => `
+            <label class="document-option">
+              <input type="checkbox" class="uploaded-doc" value="${safe(doc)}">
+              ${safe(doc)}
+            </label>
+          `).join("")}
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Upload Income Certificate (image)</label>
+        <input id="incomeCertificateFile" type="file" accept="image/*">
+        <p class="muted">If the certificate is unclear or annual income cannot be detected, the result will require manual review or re-upload.</p>
+      </div>
+
+      <p id="eligibilityError" class="message"></p>
+      <div class="modal-actions">
+        <button class="btn secondary" onclick="closeEligibilityModal()">Cancel</button>
+        <button class="btn primary" id="submitEligibilityBtn" onclick="submitEligibilityCheck('${safe(scheme.id)}')">
+          Submit for Verification
+        </button>
+      </div>
+      <div id="eligibilityResult"></div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+}
+
+function closeEligibilityModal() {
+  const modal = document.getElementById("eligibilityModal");
+  if(modal) modal.remove();
+}
+
+async function submitEligibilityCheck(schemeId) {
+  const scheme = schemes.find(s => s.id === schemeId);
+  const incomeInput = document.getElementById("apiAnnualIncome");
+  const fileInput = document.getElementById("incomeCertificateFile");
+  const errorBox = document.getElementById("eligibilityError");
+  const resultBox = document.getElementById("eligibilityResult");
+  const submitButton = document.getElementById("submitEligibilityBtn");
+
+  if(!scheme || !incomeInput || !fileInput) return;
+
+  const incomeIsRequired = scheme.income !== null && scheme.income !== undefined;
+  const annualIncome = incomeInput.value.trim() === "" ? null : Number(incomeInput.value);
+  if(incomeIsRequired && annualIncome === null) {
+    errorBox.textContent = "Is scheme ke liye annual family income enter karein.";
+    return;
+  }
+  if(annualIncome !== null && (!Number.isFinite(annualIncome) || annualIncome < 0)) {
+    errorBox.textContent = "Please enter a valid non-negative annual family income.";
+    return;
+  }
+
+  const selectedDocuments = Array.from(
+    document.querySelectorAll(".uploaded-doc:checked")
+  ).map(input => input.value);
+
+  const certificate = fileInput.files[0];
+  if(certificate && !certificate.type.startsWith("image/")) {
+    errorBox.textContent = "Please upload an image file (JPG, PNG, WEBP).";
+    return;
+  }
+  if(certificate && certificate.size > 8 * 1024 * 1024) {
+    errorBox.textContent = "Image size 8 MB se kam honi chahiye.";
+    return;
+  }
+  if(certificate && !selectedDocuments.some(d => d.toLowerCase().includes("income certificate"))) {
+    selectedDocuments.push("Income certificate");
+  }
+
+  const formData = new FormData();
+  formData.append("scheme_id", schemeId);
+  formData.append("annual_income", annualIncome === null ? "" : String(annualIncome));
+  formData.append("uploaded_documents", selectedDocuments.join(", "));
+  if(certificate) {
+    formData.append("income_certificate", certificate);
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Checking...";
+  errorBox.textContent = "";
+  resultBox.innerHTML = `<p class="muted">Python backend is checking the submitted information...</p>`;
+
+  try {
+    const response = await fetch(`${API_BASE}/check-eligibility`, {
+      method: "POST",
+      body: formData
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch(parseError) {
+      throw new Error(`Backend returned an unreadable response (HTTP ${response.status}).`);
+    }
+
+    if(!response.ok || data.status !== "success") {
+      const detail = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail || data);
+      throw new Error(detail || `Eligibility API request failed (HTTP ${response.status}).`);
+    }
+
+    const result = data.result || {};
+    const ocr = data.ocr_details || {};
+    const checks = result.checks || [];
+    const flags = result.verification_flags || [];
+    const missing = result.missing_documents || [];
+
+    let application = applications.find(a =>
+      a.email === currentUser.email && a.schemeId === schemeId
+    );
+
+    if(!application) {
+      application = {
+        id: "TSA" + Date.now(),
+        email: currentUser.email,
+        student: currentUser.name,
+        schemeId,
+        date: new Date().toLocaleDateString("en-IN"),
+        status: "Under Review"
+      };
+      applications.push(application);
+    }
+
+    application.status = "Under Review";
+    application.backendWorkflowStatus = result.workflow_status || "Needs review";
+    application.finalDecision = result.final_decision || "Pending authorized human review";
+    application.backendResult = result;
+    application.ocrDetails = ocr;
+    saveData();
+
+    resultBox.innerHTML = `
+      <section class="result-panel">
+        <h3>Backend Verification Result</h3>
+        <p><b>Workflow:</b> ${safe(result.workflow_status || "Review required")}</p>
+        <p><b>Final decision:</b> ${safe(result.final_decision || "Pending authorized human review")}</p>
+
+        <h4>Verification checks</h4>
+        ${checks.map(check => `
+          <div class="check-row">
+            <div><b>${safe(check.check)}</b> <span class="tag">${safe(check.status)}</span></div>
+            <p class="muted">${safe(check.message)}</p>
+          </div>
+        `).join("")}
+
+        <h4>OCR result</h4>
+        <p><b>${safe(ocr.document_status || "Not available")}</b></p>
+        <p class="muted">${safe(ocr.document_message || "No OCR message returned.")}</p>
+        <p><b>Possible annual income:</b>
+          ${ocr.possible_annual_income == null ? "Not confidently detected" : money(ocr.possible_annual_income)}
+        </p>
+
+        <h4>Missing documents</h4>
+        <p class="muted">${missing.length ? missing.map(safe).join(", ") : "No missing checklist documents reported."}</p>
+
+        <h4>Verification flags</h4>
+        <p class="muted">${flags.length ? flags.map(safe).join(" • ") : "No flags returned."}</p>
+
+        <div class="notice">
+          Application tracking entry saved in this browser. This is not a government submission
+          or approval. Final decision remains with the authorized officer.
+        </div>
+        <button class="btn primary" onclick="closeEligibilityModal(); studentPage('applications')">
+          View My Applications
+        </button>
+      </section>
+    `;
+
+    submitButton.textContent = "Verification Complete";
+  } catch(error) {
+    console.error(error);
+    errorBox.textContent = error.message || "Backend se connect nahi ho paya.";
+    resultBox.innerHTML = "";
+    submitButton.disabled = false;
+    submitButton.textContent = "Retry Verification";
+  }
+}
+
+function studentApplications() {
+  const mine = applications.filter(
+    a=>a.email===currentUser.email
+  );
+
+  document.getElementById("studentContent").innerHTML = `
+    <h1>My Applications</h1>
+    <p class="muted">Track the progress of your scholarship applications.</p>
+
+    ${mine.length ? `
+      <div class="card table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Application ID</th>
+              <th>Scholarship</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${mine.map(a=>{
+              const s=schemes.find(x=>x.id===a.schemeId);
+              return `
+                <tr>
+                  <td>${safe(a.id)}</td>
+                  <td>${safe(s?s.title:"Unknown scheme")}</td>
+                  <td>${safe(a.date)}</td>
+                  <td><span class="tag">${safe(a.status)}</span></td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+    ` : `
+      <div class="card empty">
+        You have not submitted any applications yet.
+        <br><br>
+        <button class="btn primary" onclick="studentPage('scholarships')">
+          Explore Scholarships
+        </button>
+      </div>
+    `}
+  `;
+}
+
+function studentProfile() {
+  const fields = [
+    ["Full Name",currentUser.name],
+    ["Email",currentUser.email],
+    ["Category",currentUser.category],
+    ["Annual Family Income",money(currentUser.income)],
+    ["Education Level",currentUser.education],
+    ["Course / Class",currentUser.course],
+    ["State",currentUser.state],
+    ["Overseas Admission",currentUser.admission]
+  ];
+
+  document.getElementById("studentContent").innerHTML = `
+    <h1>My Profile</h1>
+    <p class="muted">Your registered student information.</p>
+
+    <div class="grid">
+      ${fields.map(f=>`
+        <div class="card">
+          <div class="muted">${safe(f[0])}</div>
+          <h3>${safe(f[1])}</h3>
+        </div>
+      `).join("")}
+    </div>
+
+    <div class="notice">
+      Please ensure your profile information is accurate.
+      Eligibility results depend on the information entered here.
+    </div>
+  `;
+}
+
+// ======================================
+// ADMIN PORTAL
+// ======================================
+
+function renderAdmin() {
+  currentPage = currentPage || "overview";
+
+  app.innerHTML = `
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">🌿 TribalScholar <span>AI</span></div>
+      <div class="muted" style="color:#c5decd;margin-bottom:15px">
+        ADMINISTRATION PORTAL
+      </div>
+      <nav class="nav">
+        <button onclick="adminPage('overview')">▦ Overview</button>
+        <button onclick="adminPage('queue')">📄 Application Queue</button>
+        <button onclick="adminPage('schemes')">🎓 Scheme Catalogue</button>
+        <button onclick="adminPage('rules')">⚙ Eligibility Rules</button>
+        <button onclick="adminPage('analytics')">📊 Analytics</button>
+      </nav>
+      <button class="logout" onclick="logout()">↪ Logout</button>
+    </aside>
+
+    <section class="main">
+      <header class="topbar">
+        <div>
+          <b>Administration Workspace</b>
+          <div class="muted">Application management and verification</div>
+        </div>
+        <b>${safe(currentUser.name)}</b>
+      </header>
+      <main class="content" id="adminContent"></main>
+    </section>
+  </div>`;
+
+  adminPage(currentPage);
+}
+
+function adminPage(page) {
+  currentPage=page;
+  const content=document.getElementById("adminContent");
+  if(!content) return;
+
+  if(page==="overview") {
+    const pending=applications.filter(a=>
+      ["Submitted","Under Review"].includes(a.status)
+    ).length;
+
+    content.innerHTML=`
+      <h1>Admin Overview</h1>
+      <p class="muted">Monitor application processing and verification.</p>
+
+      <div class="stats">
+        <div class="stat">Total Applications<strong>${applications.length}</strong></div>
+        <div class="stat">Pending Review<strong>${pending}</strong></div>
+        <div class="stat">Approved<strong>${applications.filter(a=>a.status==="Approved").length}</strong></div>
+      </div>
+
+      <section class="card">
+        <h2>Verification Workflow</h2>
+        <p>1. Application submitted by student.</p>
+        <p>2. Document scrutiny by authorized officials.</p>
+        <p>3. Eligibility checks.</p>
+        <p>4. Human review and decision.</p>
+        <p>5. Student notification and tracking.</p>
+      </section>
+
+      <button class="btn primary" onclick="adminPage('queue')">
+        Open Application Queue →
+      </button>
+    `;
+  }
+
+  if(page==="queue") {
+    content.innerHTML=`
+      <h1>Application Verification Queue</h1>
+      <p class="muted">Review applications and update their status.</p>
+
+      ${applications.length ? `
+        <div class="card table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Application ID</th>
+                <th>Student</th>
+                <th>Scheme</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${applications.map((a,i)=>{
+                const s=schemes.find(x=>x.id===a.schemeId);
+                return `
+                  <tr>
+                    <td>${safe(a.id)}</td>
+                    <td>${safe(a.student)}<br>${safe(a.email)}</td>
+                    <td>${safe(s?s.title:"Unknown")}</td>
+                    <td>${safe(a.date)}</td>
+                    <td>
+                      <select onchange="updateStatus(${i},this.value)">
+                        ${["Submitted","Under Review","Deficiency Raised","Approved","Rejected"].map(status=>`
+                          <option ${a.status===status?"selected":""}>
+                            ${status}
+                          </option>
+                        `).join("")}
+                      </select>
+                    </td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      ` : `
+        <div class="card empty">
+          No applications have been submitted yet.
+        </div>
+      `}
+    `;
+  }
+
+  if(page==="schemes") {
+    content.innerHTML=`
+      <h1>Scheme Catalogue</h1>
+      <p class="muted">Scheme entries fetched from the Python backend.</p>
+      <div class="grid">
+        ${schemes.map(s=>`
+          <div class="scheme-card">
+            <div style="font-size:28px">${s.icon}</div>
+            <h3>${safe(s.title)}</h3>
+            <p>${safe(s.description)}</p>
+            <span class="tag">${safe(s.category)}</span>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  if(page==="rules") {
+    content.innerHTML=`
+      <h1>Scheme Configuration & Rules</h1>
+      <p class="muted">
+        Scheme information is loaded from the backend JSON configuration.
+        Limits and conditions are demo configuration values and require verification
+        against the current official scheme-year notification.
+      </p>
+
+      <div class="grid">
+        ${schemes.map(s=>`
+          <div class="scheme-card">
+            <h3>${safe(s.title)}</h3>
+            <p><b>Study level:</b> ${safe(s.category)}</p>
+            <p><b>Configured annual income limit:</b>
+              ${s.income === null || s.income === undefined ? "Not configured" : money(s.income)}
+            </p>
+            <p>${safe(s.incomeStatus)}</p>
+            <p>${safe(s.rulesStatus)}</p>
+            <p><b>Documents:</b> ${safe((s.documents || []).join(", "))}</p>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="notice">
+        The platform does not treat unverified configuration values as final official rules.
+        ST status, domicile, course, institution and other current conditions need authorized review.
+      </div>
+    `;
+  }
+
+  if(page==="analytics") {
+    content.innerHTML=`
+      <h1>Analytics & Reports</h1>
+      <p class="muted">Application counts from this browser's saved data.</p>
+
+      <div class="stats">
+        <div class="stat">Total<strong>${applications.length}</strong></div>
+        <div class="stat">Under Review<strong>${applications.filter(a=>a.status==="Under Review").length}</strong></div>
+        <div class="stat">Deficiency Raised<strong>${applications.filter(a=>a.status==="Deficiency Raised").length}</strong></div>
+        <div class="stat">Approved<strong>${applications.filter(a=>a.status==="Approved").length}</strong></div>
+        <div class="stat">Rejected<strong>${applications.filter(a=>a.status==="Rejected").length}</strong></div>
+      </div>
+    `;
+  }
+}
+
+function updateStatus(index,status) {
+  if(!applications[index]) return;
+
+  applications[index].status=status;
+  saveData();
+  adminPage("queue");
+}
+
+// ======================================
+// LOGOUT
+// ======================================
+
+function logout() {
+  currentUser=null;
+  currentPage="overview";
+  renderLogin();
+}
+
+// Start application
+renderLogin();
+
+</script>
+</body>
+</html>

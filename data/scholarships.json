@@ -1,0 +1,186 @@
+
+{
+  "dataset_version": "final-1.0",
+  "project": "GyanSetu",
+  "purpose": "ST student scholarship application and document verification prototype",
+  "data_note": "Official-source-based scheme catalogue. Verify current rules before real applications.",
+  "official_sources": {
+    "ministry_of_tribal_affairs": "https://tribal.nic.in/",
+    "ministry_scholarship_page": "https://tribal.nic.in/Scholarship.aspx",
+    "national_scholarship_portal": "https://scholarships.gov.in/",
+    "dbt_tribal_portal": "https://dbttribal.gov.in/",
+    "national_fellowship_portal": "https://fellowship.tribal.gov.in/",
+    "national_overseas_portal": "https://overseas.tribal.gov.in/"
+  },
+  "scholarships": [
+    {
+      "scheme_id": "MOTA_PRE_MATRIC_ST",
+      "scheme_name": "Pre-Matric Scholarship for ST Students",
+      "target_group": "Scheduled Tribe students",
+      "study_level": "Classes IX-X",
+      "annual_family_income_limit_inr": 250000,
+      "income_limit_status": "Verify against current official guidelines",
+      "key_conditions": [
+        "Applicant must meet applicable ST and domicile requirements",
+        "School and class must be covered by the current scheme",
+        "State/UT implementation rules apply"
+      ],
+      "documents_to_check": [
+        "ST certificate",
+        "Income certificate",
+        "School enrollment proof",
+        "Bank account details"
+      ],
+      "application_portal": "https://scholarships.gov.in/",
+      "rules_status": "Current State/UT checklist requires verification"
+    },
+    {
+      "scheme_id": "MOTA_POST_MATRIC_ST",
+      "scheme_name": "Post-Matric Scholarship for ST Students",
+      "target_group": "Scheduled Tribe students",
+      "study_level": "Class XI and above in eligible courses",
+      "annual_family_income_limit_inr": 250000,
+      "income_limit_status": "Verify against current official guidelines",
+      "key_conditions": [
+        "Applicant must meet applicable ST and domicile requirements",
+        "Previous qualification, course and institution must meet scheme rules",
+        "State/UT implementation rules apply"
+      ],
+      "documents_to_check": [
+        "ST certificate",
+        "Income certificate",
+        "Previous qualifying examination marksheet",
+        "Admission or enrollment proof",
+        "Bank account details"
+      ],
+      "application_portal": "https://dbttribal.gov.in/",
+      "rules_status": "Current State/UT checklist requires verification"
+    },
+    {
+      "scheme_id": "MOTA_TOP_CLASS_ST",
+      "scheme_name": "National Scholarship for Higher Education of ST Students (Top Class)",
+      "target_group": "Eligible Scheduled Tribe students",
+      "study_level": "Eligible courses at institutions covered by current scheme guidelines",
+      "annual_family_income_limit_inr": 600000,
+      "income_limit_status": "Verify against current scheme-year guidelines",
+      "key_conditions": [
+        "Applicant must meet current ST eligibility requirements",
+        "Institution and course must be covered by the scheme",
+        "Academic and selection criteria must follow current guidelines"
+      ],
+      "documents_to_check": [
+        "ST certificate",
+        "Income certificate",
+        "Qualifying examination marksheet",
+        "Admission proof",
+        "Bank account details"
+      ],
+      "application_portal": "https://scholarships.gov.in/",
+      "rules_status": "Current institution list and detailed criteria require verification"
+    },
+    {
+      "scheme_id": "MOTA_NFST",
+      "scheme_name": "National Fellowship for ST Students",
+      "target_group": "Eligible Scheduled Tribe research scholars",
+      "study_level": "Research programmes covered by current fellowship guidelines",
+      "annual_family_income_limit_inr": null,
+      "income_limit_status": "Not configured; do not apply an income test",
+      "key_conditions": [
+        "Academic qualification and research programme must meet current guidelines",
+        "Applicant must satisfy applicable ST eligibility requirements",
+        "Selection follows the official process"
+      ],
+      "documents_to_check": [
+        "ST certificate",
+        "Required academic marksheets",
+        "Admission or research programme proof",
+        "Identity documents",
+        "Bank account details"
+      ],
+      "application_portal": "https://fellowship.tribal.gov.in/",
+      "rules_status": "Current eligibility, award details and document checklist require verification"
+    },
+    {
+      "scheme_id": "MOTA_NOS_ST",
+      "scheme_name": "National Overseas Scholarship Scheme for ST Candidates",
+      "target_group": "Eligible Scheduled Tribe candidates",
+      "study_level": "Overseas study covered by current guidelines",
+      "annual_family_income_limit_inr": null,
+      "income_limit_status": "Not configured; verify current official notice",
+      "key_conditions": [
+        "Applicant must meet current ST eligibility requirements",
+        "Overseas course and institution must satisfy scheme rules",
+        "Academic qualifications, income limit and selection criteria must be verified for the relevant year"
+      ],
+      "documents_to_check": [
+        "ST certificate",
+        "Income certificate, if required by current guidelines",
+        "Academic degree and marksheets",
+        "Foreign university admission documents",
+        "Passport",
+        "Other documents specified in the current notice"
+      ],
+      "application_portal": "https://overseas.tribal.gov.in/",
+      "rules_status": "Current income limit, award count and document checklist require verification"
+    }
+  ],
+  "demo_applicants": [
+    {
+      "application_id": "DEMO-ST-001",
+      "is_synthetic": true,
+      "applicant_name": "Demo Applicant A",
+      "scheme_id": "MOTA_POST_MATRIC_ST",
+      "reported_family_income_inr": 210000,
+      "ocr_family_income_inr": 310000,
+      "uploaded_documents": [
+        "ST certificate",
+        "Income certificate"
+      ],
+      "verification_flags": [
+        "Income value differs between form and OCR"
+      ],
+      "workflow_status": "Needs document review",
+      "final_decision": "Pending authorized human review"
+    },
+    {
+      "application_id": "DEMO-ST-002",
+      "is_synthetic": true,
+      "applicant_name": "Demo Applicant B",
+      "scheme_id": "MOTA_TOP_CLASS_ST",
+      "reported_family_income_inr": 420000,
+      "ocr_family_income_inr": 420000,
+      "uploaded_documents": [
+        "ST certificate",
+        "Income certificate"
+      ],
+      "verification_flags": [
+        "Institution eligibility requires verification"
+      ],
+      "workflow_status": "Pending verification",
+      "final_decision": "Pending authorized human review"
+    },
+    {
+      "application_id": "DEMO-ST-003",
+      "is_synthetic": true,
+      "applicant_name": "Demo Applicant C",
+      "scheme_id": "MOTA_PRE_MATRIC_ST",
+      "reported_family_income_inr": 150000,
+      "ocr_family_income_inr": null,
+      "uploaded_documents": [
+        "ST certificate"
+      ],
+      "verification_flags": [
+        "Income document value not extracted"
+      ],
+      "workflow_status": "Needs document review",
+      "final_decision": "Pending authorized human review"
+    }
+  ],
+  "ai_policy": {
+    "flag_missing_documents": true,
+    "flag_inconsistent_information": true,
+    "perform_configured_rule_checks": true,
+    "make_final_selection_decision": false,
+    "final_decision_authority": "Authorized officials"
+  }
+}
